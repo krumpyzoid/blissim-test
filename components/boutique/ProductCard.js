@@ -36,7 +36,7 @@ const ProductCard = (props) => {
     const context = useGlobalContext();
 
     const handleAddToCart = (e, product) => {
-        context.addProductToCart(product, context.pushObject('open_interstitial', true))
+        context.addProductToCart(product)
     }
 
     const handleAddToWishList = (e, product) => {
