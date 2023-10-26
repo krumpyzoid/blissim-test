@@ -1,5 +1,4 @@
 import { Typography } from '@mui/material';
-
 import withStyles from '@mui/styles/withStyles';
 
 const useStyles = theme => ({

@@ -1,10 +1,10 @@
-import Header from './header/Header'
-import Footer from './footer/Footer'
-import Interstitial from './Interstitial'
 import withStyles from '@mui/styles/withStyles';
 
+import Header from './header/Header'
+import Footer from './footer/Footer'
+
 // ===== Basic Layout ===== //
-const useStyles = (theme) => ({
+const useStyles = () => ({
     root: {
         minHeight: "100vh",
     },
@@ -13,16 +13,12 @@ const useStyles = (theme) => ({
 const  DefaultLayout = (props) => {
     const {classes} = props
     return (
-        
             <div className={classes.root}>
-
                 {/*Header*/}
-                <Header/>
-
-                <main>
-                    {props.children}
-                </main>
-
+                    <Header/>
+                    <main>
+                        {props.children}
+                    </main>
                 {/*Footer*/}
                 <Footer/>
             </div>

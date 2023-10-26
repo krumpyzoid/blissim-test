@@ -1,10 +1,12 @@
-import { AppBar, Toolbar, Typography, IconButton, Container } from '@mui/material';
+import { AppBar, Toolbar, Typography, IconButton, Container, Icon } from '@mui/material';
 import withStyles from '@mui/styles/withStyles';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import Link from 'next/link'
+
+import useGlobalContext from '../../hooks/useGlobalContext';
+
 import Interstitial from '../Interstitial'
-import {useContext, useState} from "react";
-import GlobalContext from "../../state/global-context";
 
 const useStyles = theme => ({
     toolbar: {
@@ -14,12 +16,16 @@ const useStyles = theme => ({
     },
     cartIcon: {
         color: theme.palette.light,
-    }
+    },
+    rightNav: {
+        display: "flex",
+        alignItems: "center",
+    },
 });
 
 const Header = props => {
     const {classes} = props
-    const context = useContext(GlobalContext);
+    const context = useGlobalContext();
 
     const toggleDrawer = (open) => (event) => {
         if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -40,9 +46,19 @@ const Header = props => {
                             </Typography>
                         </a>
                     </Link>
-                    <IconButton onClick={toggleDrawer(!context.open_interstitial)} size="large">
-                        <ShoppingBasketIcon className={classes.cartIcon}/>
-                    </IconButton>
+                    <div className={classes.rightNav}>
+                        <Link href="/favourites" passHref>
+                            <a>
+                                <Icon size="large">
+                                    <FavoriteIcon className={classes.cartIcon}/>
+                                </Icon>
+                            </a>
+                        </Link>
+                        <IconButton onClick={toggleDrawer(!context.open_interstitial)} size="large">
+                            <ShoppingBasketIcon className={classes.cartIcon}/>
+                        </IconButton>
+                    </div>
+                    
                 </Toolbar>
             </Container>
         </AppBar>

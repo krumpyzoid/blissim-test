@@ -1,11 +1,11 @@
+import {useEffect, useState} from "react";
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import { Typography, Button, Grid, Card, IconButton, CardMedia } from '@mui/material';
 import withStyles from '@mui/styles/withStyles';
-import {useContext} from 'react'
-import GlobalContext from '../state/global-context';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import DeleteIcon from '@mui/icons-material/Delete';
-import {useEffect, useState} from "react";
+
+import useGlobalContext from '../hooks/useGlobalContext';
 
 const useStyles = theme => ({
     interstitial: {
@@ -39,8 +39,8 @@ const useStyles = theme => ({
 });
 
 const Interstitial = props => {
-    const {classes} = props;
-    const context = useContext(GlobalContext);
+    const { classes } = props;
+    const context = useGlobalContext();
     const cart = context.cart
     const [totalPrice, setTotalPrice] = useState(0)
 

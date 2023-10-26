@@ -1,7 +1,8 @@
-import '../styles/globals.css'
-import {GlobalProvider} from "../state/global-context";
 import { ThemeProvider, StyledEngineProvider } from '@mui/material/styles';
 import { CssBaseline } from '@mui/material';
+
+import '../styles/globals.css'
+import { GlobalProvider } from "../state/global-context";
 import theme from '../theme/theme';
 
 

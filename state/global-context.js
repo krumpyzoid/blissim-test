@@ -1,6 +1,7 @@
 import { createContext, Component } from 'react';
-const GlobalContext = createContext();
 import PropTypes from 'prop-types';
+
+const GlobalContext = createContext();
 
 export class GlobalProvider extends Component {
     constructor(props) {
@@ -8,10 +9,14 @@ export class GlobalProvider extends Component {
         this.state = {
             open_interstitial: false,
             cart: [],
+            wishlist: [],
             pushObject: this.pushObject.bind(this),
             getCart: this.getCart.bind(this),
             addProductToCart: this.addProductToCart.bind(this),
             removeProductToCart: this.removeProductToCart.bind(this),
+            getWishList: this.getWishList.bind(this),
+            addProductToWishList: this.addProductToWishList.bind(this),
+            removeProductToWishList: this.removeProductToWishList.bind(this),
         }
     }
 
@@ -21,17 +26,12 @@ export class GlobalProvider extends Component {
 
     getCart() {
         const sessionStorageCart = JSON.parse(sessionStorage.getItem('cart')); // null if not exist
+        this.setState({ cart: sessionStorageCart || [] });
 
-        if (sessionStorageCart !== null) {
-            this.setState({ cart: sessionStorageCart });
-        }else {
-            this.setState({ cart: [] });
-        }
     }
 
     addProductToCart(product, callback) {
-        const newCart = [...this.state.cart]
-        newCart.push(product)
+        const newCart = [...this.state.cart, product]
         this.setState({ cart: newCart }, () => {
             sessionStorage.setItem('cart', JSON.stringify(newCart));
 
@@ -41,11 +41,34 @@ export class GlobalProvider extends Component {
 
     removeProductToCart(id, callback) {
         const newCart = [...this.state.cart]
-        const ProductIndex = newCart.findIndex(p => p.id === id);
-        console.log({ProductIndex, newCart, id})
-        newCart.splice(ProductIndex, 1)
+            .filter(p => p.id !== id);
+
         this.setState({ cart: newCart }, () => {
             sessionStorage.setItem('cart', JSON.stringify(newCart));
+            if (typeof callback !== 'undefined') callback();
+        });
+    }
+
+    getWishList() {
+        const sessionStorageWishList = JSON.parse(sessionStorage.getItem('wishlist')); // null if not exist
+        this.setState({ wishlist: sessionStorageWishList || [] });
+    }
+
+    addProductToWishList(product, callback) {
+        const newWishList = [...this.state.wishlist, product]
+        this.setState({ wishlist: newWishList }, () => {
+            sessionStorage.setItem('wishlist', JSON.stringify(newWishList));
+
+            if (typeof callback !== 'undefined') callback();
+        });
+    }
+
+    removeProductToWishList(id, callback) {
+        const newWishList = [...this.state.wishlist]
+            .filter(p => p.id !== id);
+
+        this.setState({ wishlist: newWishList }, () => {
+            sessionStorage.setItem('wishlist', JSON.stringify(newWishList));
             if (typeof callback !== 'undefined') callback();
         });
     }

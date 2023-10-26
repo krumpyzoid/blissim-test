@@ -1,7 +1,8 @@
-import DefaultLayaout from '../components/DefaultLayout'
 import { Button, Container, Grid, Typography } from '@mui/material';
 import withStyles from '@mui/styles/withStyles';
 import Link from 'next/link'
+
+import DefaultLayaout from '../components/DefaultLayout'
 
 const useStyles = theme => ({
     container: {marginTop: theme.spacing(5)}

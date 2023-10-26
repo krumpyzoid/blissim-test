@@ -1,8 +1,10 @@
 import { Card, CardContent, CardActions, CardMedia, Typography, Button, IconButton } from '@mui/material';
 import withStyles from '@mui/styles/withStyles';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
-import {useContext} from "react";
-import GlobalContext from "../../state/global-context";
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+
+import useGlobalContext from '../../hooks/useGlobalContext';
 
 const useStyles = theme => ({
     root: {
@@ -30,12 +32,20 @@ const useStyles = theme => ({
 });
 
 const ProductCard = (props) => {
-    const {classes, product} = props
-    const context = useContext(GlobalContext);
+    const {classes, product, isFavorite} = props
+    const context = useGlobalContext();
 
     const handleAddToCart = (e, product) => {
         context.addProductToCart(product, context.pushObject('open_interstitial', true))
     }
+
+    const handleAddToWishList = (e, product) => {
+        context.addProductToWishList(product)
+    }
+    const handleRemoveToWishList = (e, product) => {
+        context.removeProductToWishList(product.id)
+    }
+    const handleClickFavorite = isFavorite ? handleRemoveToWishList : handleAddToWishList;
 
     return (
         <Card className={classes.root}>
@@ -62,6 +72,9 @@ const ProductCard = (props) => {
             <CardActions>
                 <IconButton onClick={e => handleAddToCart(e, product)} size="large">
                     <ShoppingBasketIcon color="secondary"/>
+                </IconButton>
+                <IconButton onClick={e => handleClickFavorite(e, product)} size="large">
+                    { isFavorite ? <FavoriteIcon color="secondary"/> : <FavoriteBorderIcon color="secondary"/> }
                 </IconButton>
             </CardActions>
         </Card>
