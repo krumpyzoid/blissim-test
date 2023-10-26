@@ -1,5 +1,6 @@
-import {withStyles, AppBar, Toolbar, Typography, IconButton, Container} from '@material-ui/core'
-import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
+import { AppBar, Toolbar, Typography, IconButton, Container } from '@mui/material';
+import withStyles from '@mui/styles/withStyles';
+import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import Link from 'next/link'
 import Interstitial from '../Interstitial'
 import {useContext, useState} from "react";
@@ -27,29 +28,27 @@ const Header = props => {
         context.pushObject('open_interstitial', true);
     };
 
-    return (
-        <>
-        <header className={classes.root}>
-            <AppBar position="static" elevation={0}>
-                <Container maxWidth="lg">
-                    <Toolbar className={classes.toolbar}>
-                        <Link href="/" passHref>
-                            <a>
-                                <Typography variant="h4" className={classes.title}>
-                                    SuperShop
-                                </Typography>
-                            </a>
-                        </Link>
-                        <IconButton onClick={toggleDrawer(!context.open_interstitial)}>
-                            <ShoppingBasketIcon className={classes.cartIcon}/>
-                        </IconButton>
-                    </Toolbar>
-                </Container>
-            </AppBar>
-        </header>
-        <Interstitial/>
-            </>
-    )
+    return <>
+    <header className={classes.root}>
+        <AppBar position="static" elevation={0}>
+            <Container maxWidth="lg">
+                <Toolbar className={classes.toolbar}>
+                    <Link href="/" passHref>
+                        <a>
+                            <Typography variant="h4" className={classes.title}>
+                                SuperShop
+                            </Typography>
+                        </a>
+                    </Link>
+                    <IconButton onClick={toggleDrawer(!context.open_interstitial)} size="large">
+                        <ShoppingBasketIcon className={classes.cartIcon}/>
+                    </IconButton>
+                </Toolbar>
+            </Container>
+        </AppBar>
+    </header>
+    <Interstitial/>
+        </>;
 }
 
 export default withStyles(useStyles)(Header)

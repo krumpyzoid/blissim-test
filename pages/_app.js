@@ -1,18 +1,21 @@
 import '../styles/globals.css'
 import {GlobalProvider} from "../state/global-context";
-import { ThemeProvider} from "@material-ui/styles"
-import { CssBaseline } from '@material-ui/core';
+import { ThemeProvider, StyledEngineProvider } from '@mui/material/styles';
+import { CssBaseline } from '@mui/material';
 import theme from '../theme/theme';
+
 
 function MyApp({ Component, pageProps }) {
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <GlobalProvider>
-        <Component {...pageProps} />
-      </GlobalProvider>
-    </ThemeProvider>
-  )
+    <StyledEngineProvider injectFirst>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <GlobalProvider>
+          <Component {...pageProps} />
+        </GlobalProvider>
+      </ThemeProvider>
+    </StyledEngineProvider>
+  );
 }
 
 export default MyApp
