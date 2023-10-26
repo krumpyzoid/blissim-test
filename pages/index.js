@@ -3,24 +3,48 @@ import withStyles from '@mui/styles/withStyles';
 import Link from 'next/link'
 
 import DefaultLayaout from '../components/DefaultLayout'
+import Marketing from '../components/home/Marketing';
+
+export async function getStaticProps() {
+    // TO-DO: le texte est codé en dur pour simuler une réponse d'api, cependant il n'y a pas de support pour du texte riche
+    const marketing = [
+        {
+            id: 1,
+            title: "Un accompagnement sur-mesure",
+            content: "Une box mensuelle sans engagement, mais aussi des offres exclusives et un e-shop généreux. Profitez de nos conseils personnalisés et de nos vidéos accessibles gratuitement"
+        },
+        {
+            id: 2,
+            title: "10 ans d'expertise beauté",
+            content: "N1 de l'abonnement beauté en Europe, Blissim c'est déjà plus de 250 000 clients déjà conquis. Label trustpilot"
+        },
+        {
+            id: 3,
+            title: "Nos engagements",
+            content: "Nous travaillons avec des partenaires beauté et des experts toujours plus engagéa, pour vous proposer une sélection personnalisée de soins de qualité et le plus naturels possibles."
+        },
+    ];
+
+    return {
+        props: { 
+            marketing
+        }
+    }
+}
 
 const useStyles = theme => ({
     container: {marginTop: theme.spacing(5)}
 });
 
-const  Home = props => {
-    const {classes} = props
+const Home = props => {
+    const {classes, marketing} = props
     return (
         <DefaultLayaout>
-            <Container maxWidth="sm" className={classes.container}>
+            <Container maxWidth="lg" className={classes.container}>
                 <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
                     SuperShop
                 </Typography>
-                <Typography variant="h5" align="center" color="textSecondary" paragraph>
-                    Something short and leading about the collection below—its contents, the creator, etc.
-                    Make it short and sweet, but not too short so folks don&apos;t simply skip over it
-                    entirely.
-                </Typography>
+                <Marketing content={marketing} />
                 <div className={classes.heroButtons}>
                     <Grid container spacing={2} justifyContent="center">
                         <Grid item>
