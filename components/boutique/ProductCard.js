@@ -1,4 +1,4 @@
-import { Card, CardContent, CardActions, CardMedia, Typography, Button, IconButton } from '@mui/material';
+import { Card, CardContent, CardActions, CardMedia, Typography, IconButton } from '@mui/material';
 import withStyles from '@mui/styles/withStyles';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import FavoriteIcon from '@mui/icons-material/Favorite';
