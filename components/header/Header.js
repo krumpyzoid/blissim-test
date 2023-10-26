@@ -7,21 +7,7 @@ import Link from 'next/link'
 import useGlobalContext from '../../hooks/useGlobalContext';
 
 import Interstitial from '../Interstitial'
-
-const useStyles = theme => ({
-    toolbar: {
-        padding: 0,
-        display: "flex",
-        justifyContent: "space-between",
-    },
-    cartIcon: {
-        color: theme.palette.light,
-    },
-    rightNav: {
-        display: "flex",
-        alignItems: "center",
-    },
-});
+import { useStyles } from './styles';
 
 const Header = props => {
     const {classes} = props

@@ -7,19 +7,7 @@ import CartSummary from '../../components/boutique/CartSummary'
 import { productsData } from '../../infrastructure/adapters/product/productsData';
 import { ProductGatewayStub } from '../../infrastructure/adapters/product/product.stub';
 
-const useStyles = theme => ({
-    root: {marginBottom: theme.spacing(3)},
-    h1: {
-        margin: theme.spacing(5, 0)
-    },
-    filterTitle: {
-        backgroundColor: theme.palette.primary,
-        color: theme.palette.primary.main
-    },
-    filterListItem: {
-        paddingLeft: 0,
-    }
-});
+import { useStyles } from './styles'
 
 export async function getStaticProps() {
    const productGateway = new ProductGatewayStub(productsData);

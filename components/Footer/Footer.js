@@ -1,12 +1,7 @@
 import { Typography } from '@mui/material';
 import withStyles from '@mui/styles/withStyles';
 
-const useStyles = theme => ({
-    footer: {
-        backgroundColor: theme.palette.background.paper,
-        padding: theme.spacing(6),
-    },
-});
+import { useStyles } from './styles';
 
 const Footer = props => {
     const {classes} = props;
