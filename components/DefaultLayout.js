@@ -1,7 +1,7 @@
 import withStyles from '@mui/styles/withStyles';
 
 import Header from './header/Header'
-import Footer from './footer/Footer'
+import Footer from './Footer/Footer'
 
 // ===== Basic Layout ===== //
 const useStyles = () => ({
