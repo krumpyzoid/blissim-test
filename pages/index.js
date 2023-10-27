@@ -11,7 +11,7 @@ export async function getStaticProps() {
         {
             id: 1,
             title: "Un accompagnement sur-mesure",
-            content: "Une box mensuelle sans engagement, mais aussi des offres exclusives et un e-shop généreux. Profitez de nos conseils personnalisés et de nos vidéos accessibles gratuitement"
+            content: "Blissim c'est une box mensuelle sans engagement, mais aussi des offres exclusives et un e-shop généreux. Profitez de nos conseils personnalisés et de nos vidéos accessibles gratuitement"
         },
         {
             id: 2,

@@ -12,6 +12,12 @@ const theme = createTheme({
         light: '#dbedf3',
     },
     spacing: 8,
+    typography: {
+        fontFamily: [
+            'Poppins',
+            'sans-serif',
+        ].join(','),
+    },
 })
 
 // Colors
